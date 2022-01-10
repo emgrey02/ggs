@@ -1,7 +1,7 @@
 import { Container, Graphics, Loader } from 'pixi.js';
 import { assets } from '../assets';
 import { /* IScene,  */ Manager } from '../Manager';
-import { GameScene } from './GameScene';
+import { Intro } from './Intro';
 
 export class LoaderScene extends Container {
   // for making our loader graphics...
@@ -58,7 +58,7 @@ export class LoaderScene extends Container {
 
     // Let's remove our loading bar
     this.removeChild(this.loaderBar);
-    Manager.changeScene(new GameScene());
+    Manager.changeScene(new Intro());
     // all your assets are ready! I would probably change to another scene
     // ...but you could build your entire game here if you want
     // (pls don't)

@@ -1,6 +1,7 @@
 import { Application } from '@pixi/app';
 import { Keyboard } from '../src/Keyboard';
 import { IScene } from './scenes/IScene';
+import { transition } from './transition';
 
 export class Manager {
   private constructor() {
@@ -92,12 +93,14 @@ export class Manager {
   public static changeScene(newScene: IScene): void {
     // Remove and destroy old scene... if we had one..
     if (Manager.currentScene) {
+      // transition(Manager.currentScene, 'fadeout');
       Manager.app.stage.removeChild(Manager.currentScene);
       Manager.currentScene.destroy();
     }
 
-    // Add the new one
     Manager.currentScene = newScene;
+    transition(Manager.currentScene);
+    // Add the new one
     Manager.app.stage.addChild(Manager.currentScene);
   }
 

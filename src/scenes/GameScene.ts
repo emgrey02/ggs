@@ -1,15 +1,11 @@
 import { Container, DisplayObject, Sprite } from 'pixi.js';
 import { Manager } from '../Manager';
 import { Keyboard } from '../Keyboard';
-import { Tween, Group } from 'tweedle.js';
 import { IScene } from './IScene';
 
 export class GameScene extends Container implements IScene {
-  private player: Sprite;
+  public player: Sprite;
   playerVelocity: number;
-
-  //portals
-  private crown: Sprite;
 
   constructor() {
     super();
@@ -21,20 +17,7 @@ export class GameScene extends Container implements IScene {
     this.player.y = Manager.height / 2;
     this.addChild(this.player);
 
-    this.crown = Sprite.from('crown');
-    this.crown.anchor.set(0.5);
-    this.crown.scale.set(0.05);
-    this.crown.x = 100;
-    this.crown.y = 100;
-    this.addChild(this.crown);
-
     this.playerVelocity = 2;
-
-    new Tween(this.crown)
-      .to({ y: 105 }, 1000)
-      .repeat(Infinity)
-      .yoyo(true)
-      .start();
   }
 
   checkCollision(objA: DisplayObject, objB: DisplayObject): boolean {
@@ -55,12 +38,6 @@ export class GameScene extends Container implements IScene {
   }
 
   public update(framesPassed: number): void {
-    Group.shared.update();
-
-    if (this.checkCollision(this.player, this.crown)) {
-      Manager.changeScene(new GameScene());
-    }
-
     if (Keyboard.state.get('ArrowRight')) {
       this.player.x += this.playerVelocity * framesPassed;
     }

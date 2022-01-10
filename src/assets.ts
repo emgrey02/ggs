@@ -9,4 +9,9 @@ export const assets = [
     url: './crown.svg',
     metadata: { resolution: 2, resourceOptions: { scale: 2 } },
   },
+  {
+    name: 'start',
+    url: './start.svg',
+    metadata: { resolution: 2, resourceOptions: { scale: 2 } },
+  },
 ];
