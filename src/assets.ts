@@ -14,4 +14,19 @@ export const assets = [
     url: './start.svg',
     metadata: { resolution: 2, resourceOptions: { scale: 2 } },
   },
+  {
+    name: 'main-menu',
+    url: './BrightBlue/Default.png',
+    metadata: { resolution: 2, resourceOptions: { scale: 2 } },
+  },
+  {
+    name: 'main-menu-hover',
+    url: './BrightBlue/Hover.png',
+    metadata: { resolution: 2, resourceOptions: { scale: 2 } },
+  },
+  {
+    name: 'main-menu-focus',
+    url: './BrightBlue/Hover.png',
+    metadata: { resolution: 2, resourceOptions: { scale: 2 } },
+  },
 ];
