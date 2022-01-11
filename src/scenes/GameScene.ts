@@ -11,7 +11,6 @@ import { Manager } from '../Manager';
 import { Keyboard } from '../Keyboard';
 import { IScene } from './IScene';
 import { Intro } from './Intro';
-import { DropShadowFilter } from '@pixi/filter-drop-shadow';
 
 export class GameScene extends Container implements IScene {
   public player: Sprite;
@@ -30,25 +29,25 @@ export class GameScene extends Container implements IScene {
   constructor() {
     super();
 
-    //cool trail!
+    //!create a trail
     this.trailTexture = Texture.from('trail');
-    //create history array
+    // create history array
     for (let i = 0; i < this.historySize; i++) {
       this.historyX.push(0);
       this.historyY.push(0);
     }
-    //create rope points
+    // create rope points
     for (let i = 0; i < this.ropeSize; i++) {
       this.points.push(new Point(30, Manager.height / 2));
     }
-    //create the rope
+    // create the rope
     this.rope = new SimpleRope(this.trailTexture, this.points);
-    //set the blendmode
+    // set the blendmode
     this.rope.blendMode = BLEND_MODES.ADD;
     this.rope.alpha = 0;
     this.addChild(this.rope);
 
-    //make the player
+    //!make the player
     this.player = Sprite.from('char');
     this.player.anchor.set(0.5);
     this.player.scale.set(0.7);
@@ -56,22 +55,10 @@ export class GameScene extends Container implements IScene {
     this.player.y = 30;
     this.addChild(this.player);
 
-    //set the player's velocity
+    //!set the player's velocity
     this.playerVelocity = 2;
 
-    //player shadow
-    this.player.filters = [
-      new DropShadowFilter({
-        blur: 0.5,
-        quality: 1,
-        pixelSize: 0.5,
-        resolution: 2,
-        distance: 7,
-        rotation: 200,
-      }),
-    ];
-
-    //create main menu button
+    //!create main menu button
     this.mainMenuButton = Sprite.from('main-menu');
     this.mainMenuButton.anchor.set(0.5);
     this.mainMenuButton.x = 100;
@@ -79,7 +66,7 @@ export class GameScene extends Container implements IScene {
     this.addChild(this.mainMenuButton);
     this.mainMenuButton.interactive = true;
 
-    //event listeners for main menu button
+    //!event listeners for main menu button
     this.mainMenuButton.on('pointertap', () => {
       Manager.changeScene(new Intro());
       document.body.style.cursor = 'inherit';
@@ -94,6 +81,8 @@ export class GameScene extends Container implements IScene {
       this.mainMenuButton.tint = 0xffffff;
       document.body.style.cursor = 'inherit';
     });
+
+    this.sortableChildren = true;
   }
 
   public update(framesPassed: number): void {
@@ -128,6 +117,7 @@ export class GameScene extends Container implements IScene {
     if (this.player.y < 0) {
       this.player.y = 0;
     }
+
     this.updatePlayerPosition(this.player.x, this.player.y);
     this.rope.alpha = 1;
   }

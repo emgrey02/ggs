@@ -34,4 +34,9 @@ export const assets = [
     url: './trail.png',
     metadata: { resolution: 2, resourceOptions: { scale: 2 } },
   },
+  {
+    name: 'bg',
+    url: './bg.jpg',
+    metadata: { resolution: 2, resourceOptions: { scale: 2 } },
+  },
 ];

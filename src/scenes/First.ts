@@ -5,9 +5,16 @@ import { GameScene } from './GameScene';
 
 export class First extends GameScene {
   private crown: Sprite;
+  private bg: Sprite;
 
   constructor() {
     super();
+
+    this.bg = Sprite.from('bg');
+    this.bg.width = Manager.width;
+    this.bg.height = Manager.height;
+    this.bg.zIndex = -1;
+    this.addChild(this.bg);
 
     this.crown = Sprite.from('crown');
     this.crown.anchor.set(0.5);

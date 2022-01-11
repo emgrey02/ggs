@@ -1,4 +1,4 @@
-import { Application } from '@pixi/app';
+import { Application } from 'pixi.js';
 import { Keyboard } from '../src/Keyboard';
 import { IScene } from './scenes/IScene';
 import { transition } from './transition';
