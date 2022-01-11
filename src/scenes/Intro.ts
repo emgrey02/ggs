@@ -1,4 +1,4 @@
-import { Container, TextStyle, Text, Sprite, InteractionEvent } from 'pixi.js';
+import { Container, TextStyle, Text, Sprite } from 'pixi.js';
 import { Group, Tween } from 'tweedle.js';
 import { Manager } from '../Manager';
 import { First } from './First';
@@ -68,11 +68,8 @@ export class Intro extends Container implements IScene {
     }
   }
 
-  private onClick(e: InteractionEvent): void {
-    let location = e.data.global;
+  private onClick(): void {
     document.body.style.cursor = 'default';
-    console.log(location);
-
     Manager.changeScene(new First());
   }
 }

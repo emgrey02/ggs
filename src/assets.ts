@@ -26,7 +26,12 @@ export const assets = [
   },
   {
     name: 'main-menu-focus',
-    url: './BrightBlue/Hover.png',
+    url: './BrightBlue/Focus.png',
+    metadata: { resolution: 2, resourceOptions: { scale: 2 } },
+  },
+  {
+    name: 'trail',
+    url: './trail.png',
     metadata: { resolution: 2, resourceOptions: { scale: 2 } },
   },
 ];
