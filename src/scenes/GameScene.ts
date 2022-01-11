@@ -2,10 +2,12 @@ import { Container, DisplayObject, Sprite } from 'pixi.js';
 import { Manager } from '../Manager';
 import { Keyboard } from '../Keyboard';
 import { IScene } from './IScene';
+import { Intro } from './Intro';
 
 export class GameScene extends Container implements IScene {
   public player: Sprite;
   playerVelocity: number;
+  public mainMenuButton: Sprite;
 
   constructor() {
     super();
@@ -13,11 +15,33 @@ export class GameScene extends Container implements IScene {
     this.player = Sprite.from('char');
     this.player.anchor.set(0.5);
     this.player.scale.set(0.7);
-    this.player.x = Manager.width / 2;
+    this.player.x = 30;
     this.player.y = Manager.height / 2;
     this.addChild(this.player);
 
     this.playerVelocity = 2;
+
+    this.mainMenuButton = Sprite.from('main-menu');
+    this.mainMenuButton.anchor.set(0.5);
+    this.mainMenuButton.x = 100;
+    this.mainMenuButton.y = 30;
+    this.addChild(this.mainMenuButton);
+    this.mainMenuButton.interactive = true;
+
+    this.mainMenuButton.on('pointertap', () => {
+      Manager.changeScene(new Intro());
+      document.body.style.cursor = 'inherit';
+    });
+
+    this.mainMenuButton.on('pointerover', () => {
+      document.body.style.cursor = 'pointer';
+      this.mainMenuButton.tint = 0x555555;
+    });
+
+    this.mainMenuButton.on('pointerout', () => {
+      this.mainMenuButton.tint = 0xffffff;
+      document.body.style.cursor = 'inherit';
+    });
   }
 
   checkCollision(objA: DisplayObject, objB: DisplayObject): boolean {
