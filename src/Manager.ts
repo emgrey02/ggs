@@ -46,7 +46,8 @@ export class Manager {
       width: width,
       height: height,
     });
-
+    Manager.app.renderer.view.style.position = 'absolute';
+    Manager.app.renderer.view.style.display = 'block';
     // Add the ticker
     Manager.app.ticker.add(Manager.update);
 

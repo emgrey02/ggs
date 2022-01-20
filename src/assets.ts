@@ -1,42 +1,50 @@
 export const assets = [
   {
     name: 'char',
-    url: './char.svg',
-    metadata: { resolution: 2, resourceOptions: { scale: 2 } },
+    url: './char.png',
   },
   {
     name: 'crown',
     url: './crown.svg',
-    metadata: { resolution: 2, resourceOptions: { scale: 2 } },
   },
   {
     name: 'start',
     url: './start.svg',
-    metadata: { resolution: 2, resourceOptions: { scale: 2 } },
   },
   {
     name: 'main-menu',
-    url: './BrightBlue/Default.png',
-    metadata: { resolution: 2, resourceOptions: { scale: 2 } },
+    url: './main-menu-primary.svg',
   },
   {
     name: 'main-menu-hover',
-    url: './BrightBlue/Hover.png',
-    metadata: { resolution: 2, resourceOptions: { scale: 2 } },
+    url: './main-menu-hover.png',
   },
   {
     name: 'main-menu-focus',
-    url: './BrightBlue/Focus.png',
-    metadata: { resolution: 2, resourceOptions: { scale: 2 } },
+    url: './main-menu-focus.png',
   },
   {
-    name: 'trail',
-    url: './trail.png',
-    metadata: { resolution: 2, resourceOptions: { scale: 2 } },
+    name: 'credits-primary',
+    url: './credits-primary.png',
   },
   {
-    name: 'bg',
-    url: './bg.jpg',
-    metadata: { resolution: 2, resourceOptions: { scale: 2 } },
+    name: 'credits-hover',
+    url: './credits-hover.png',
+  },
+  {
+    name: 'credits-focus',
+    url: './credits-focus.png',
+  },
+  {
+    name: 'inst-primary',
+    url: './inst-primary.svg',
+  },
+  {
+    name: 'inst-hover',
+    url: './inst-hover.png',
+  },
+  {
+    name: 'inst-focus',
+    url: './inst-focus.png',
   },
 ];
