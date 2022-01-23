@@ -27,10 +27,10 @@ export class First extends GameScene {
 
     this.crown = Sprite.from('crown');
     this.crown.anchor.set(0.5);
-    this.crown.scale.set(0.03);
+    this.crown.scale.set(0.1);
     this.crown.x = 100;
     this.crown.y = 100;
-    this.bg.addChild(this.crown);
+    this.addChild(this.crown);
 
     new Tween(this.crown)
       .to({ y: 105 }, 1000)

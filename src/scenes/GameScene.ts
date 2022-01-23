@@ -50,7 +50,7 @@ export class GameScene extends Container implements IScene {
     //!make the player
     this.player = Sprite.from('char');
     this.player.anchor.set(0.5);
-    this.player.scale.set(0.3);
+    this.player.scale.set(0.2);
     this.player.x = 30;
     this.player.y = 30;
     this.addChild(this.player);

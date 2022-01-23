@@ -1,13 +1,15 @@
 import { Container, Graphics, Loader } from 'pixi.js';
 import { assets } from '../assets';
-import { /* IScene,  */ Manager } from '../Manager';
+import { Manager } from '../Manager';
 import { Intro } from './Intro';
+import { WebfontLoaderPlugin } from 'pixi-webfont-loader';
 
 export class LoaderScene extends Container {
   // for making our loader graphics...
   private loaderBar: Container;
   private loaderBarBorder: Graphics;
   private loaderBarFill: Graphics;
+
   constructor() {
     super();
 
@@ -34,8 +36,10 @@ export class LoaderScene extends Container {
     this.loaderBar.position.y = (Manager.height - this.loaderBar.height) / 2;
     this.addChild(this.loaderBar);
 
-    // Now the actual asset loader:
+    //allow for web fonts
+    Loader.registerPlugin(new WebfontLoaderPlugin);
 
+    // Now the actual asset loader:
     // we add the asset manifest
     Loader.shared.add(assets);
 

@@ -1,73 +1,138 @@
-import { Container, TextStyle, Text, Sprite } from 'pixi.js';
-import { Group, Tween } from 'tweedle.js';
+import { Container, TextStyle, Text  } from 'pixi.js';
+import { Group } from 'tweedle.js';
 import { Manager } from '../Manager';
 import { First } from './First';
 import { IScene } from './IScene';
 
 export class Intro extends Container implements IScene {
-  private title: Text;
-  private style: TextStyle;
-  private startButton: Sprite;
-  private instrButton: Sprite;
+  private titleStyle: TextStyle;
+  private linkHeavy: TextStyle;
+  private link: TextStyle;
+  private focus: TextStyle;
 
   constructor() {
     super();
 
-    this.style = new TextStyle({
-      fontFamily: 'Single Day',
-      fontSize: 60,
+    this.titleStyle = new TextStyle({
+      fontFamily: 'Bungee',
+      fontSize: 96,
+      fill: '#000000',
+    });
+
+    this.linkHeavy = new TextStyle({
+      fontFamily: 'Urbanist',
+      fontSize: 48,
+      fontWeight: '600',
+      fill: '#238390  ',
+    });
+
+    this.link = new TextStyle({
+      fontFamily: 'Urbanist',
+      fontSize: 48,
+      fontWeight: '400',
+      fill: '#000000',
+    });
+
+    this.focus = new TextStyle({
+      fontFamily: 'Urbanist',
+      fontSize: 48,
+      fontWeight: '600',
       fill: '#000000',
       dropShadow: true,
-      dropShadowColor: '#000000',
-      dropShadowBlur: 4,
-      dropShadowAngle: Math.PI / 6,
-      dropShadowDistance: 6,
-      lineJoin: 'round',
-    });
+      dropShadowAlpha: 0.8,
+      dropShadowAngle: -4.2,
+      dropShadowBlur: 8,
+      dropShadowDistance: 3,
+    })
 
-    this.title = new Text('Game Title', this.style);
-    this.title.anchor.set(0.5);
-    this.title.x = Manager.width / 2;
-    this.title.y = 100;
-    this.addChild(this.title);
+    let title = new Text('Game Title', this.titleStyle);
+    title.anchor.set(0.5);
+    title.x = Manager.width / 2;
+    title.y = 100;
+    this.addChild(title);
 
-    this.startButton = Sprite.from('start');
-    this.startButton.anchor.set(0.5);
-    this.startButton.scale.set(0.5);
-    this.startButton.x = Manager.width / 2;
-    this.startButton.y = Manager.height / 2;
-    this.addChild(this.startButton);
+    let start = new Text('start', this.linkHeavy);
+    start.anchor.set(0.5);
+    start.scale.set(0.5);
+    start.x = Manager.width / 2;
+    start.y = Manager.height / 2;
+    this.addChild(start);
 
-    this.startButton.interactive = true;
-    this.startButton.on('pointerover', () => {
+    let controls = new Text('controls', this.link);
+    controls.anchor.set(0.5);
+    controls.scale.set(0.5);
+    controls.x = Manager.width / 2;
+    controls.y = Manager.height / 2 + 30;
+    this.addChild(controls);
+
+    let settings = new Text('settings', this.link);
+    settings.anchor.set(0.5);
+    settings.scale.set(0.5);
+    settings.x = Manager.width / 2;
+    settings.y = Manager.height / 2 + 60;
+    this.addChild(settings);
+
+    let credits = new Text('credits', this.link);
+    credits.anchor.set(0.5);
+    credits.scale.set(0.5);
+    credits.x = Manager.width / 2;
+    credits.y = Manager.height / 2 + 90;
+    this.addChild(credits);
+
+    start.interactive = true;
+    controls.interactive = true;
+    settings.interactive = true;
+    credits.interactive = true;
+
+    start.on('pointerover', () => {
       document.body.style.cursor = 'pointer';
+      start.style = this.focus;
     });
-    this.startButton.on('pointerout', () => {
+    start.on('pointerout', () => {
       document.body.style.cursor = 'default';
+      start.style = this.linkHeavy;
+    });
+    start.on('pointertap', this.onClick, this);
+
+
+    controls.on('pointerover', () => {
+      document.body.style.cursor = 'pointer';
+      controls.style = this.focus;
+    });
+    controls.on('pointerout', () => {
+      document.body.style.cursor = 'default';
+      controls.style = this.link;
     });
 
-    this.startButton.on('pointertap', this.onClick, this);
+    settings.on('pointerover', () => {
+      document.body.style.cursor = 'pointer';
+      settings.style = this.focus;
+    });
+    settings.on('pointerout', () => {
+      document.body.style.cursor = 'default';
+      settings.style = this.link;
+    });
 
-    this.instrButton = Sprite.from('inst-primary');
-    this.instrButton.anchor.set(0.5);
-    this.instrButton.scale.set(0.5);
-    this.instrButton.x = Manager.width / 5;
-    this.instrButton.y = Manager.height - 100;
-    this.addChild(this.instrButton);
+    credits.on('pointerover', () => {
+      document.body.style.cursor = 'pointer';
+      credits.style = this.focus;
+    });
+    credits.on('pointerout', () => {
+      document.body.style.cursor = 'default';
+      credits.style = this.link;
+    });
+    
 
-    new Tween(this.startButton)
-      .to({ y: 228 }, 1000)
-      .repeat(Infinity)
-      .yoyo(true)
-      .start();
+    start.accessible = true;
+    controls.accessible = true;
+    settings.accessible = true;
+    credits.accessible = true;  
+
   }
 
   public update(framesPassed: number): void {
     Group.shared.update();
-    this.startButton.x += 0.1 * framesPassed;
-    if (this.startButton.x >= Manager.width / 2 + 1) {
-      this.startButton.x = Manager.width / 2 + 1;
-    }
+    console.log(framesPassed);
   }
 
   private onClick(): void {

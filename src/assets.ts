@@ -4,47 +4,18 @@ export const assets = [
     url: './char.png',
   },
   {
+    name: 'bg',
+    url: './bg.png',
+  },
+  {
     name: 'crown',
     url: './crown.svg',
   },
-  {
-    name: 'start',
-    url: './start.svg',
+  { name: 'Bungee',
+    url: 'https://fonts.googleapis.com/css2?family=Bungee&display=swap'
   },
   {
-    name: 'main-menu',
-    url: './main-menu-primary.svg',
-  },
-  {
-    name: 'main-menu-hover',
-    url: './main-menu-hover.png',
-  },
-  {
-    name: 'main-menu-focus',
-    url: './main-menu-focus.png',
-  },
-  {
-    name: 'credits-primary',
-    url: './credits-primary.png',
-  },
-  {
-    name: 'credits-hover',
-    url: './credits-hover.png',
-  },
-  {
-    name: 'credits-focus',
-    url: './credits-focus.png',
-  },
-  {
-    name: 'inst-primary',
-    url: './inst-primary.svg',
-  },
-  {
-    name: 'inst-hover',
-    url: './inst-hover.png',
-  },
-  {
-    name: 'inst-focus',
-    url: './inst-focus.png',
-  },
+    name: 'Urbanist',
+    url: 'https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600&display=swap'
+  }
 ];
